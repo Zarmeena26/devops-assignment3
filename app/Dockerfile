@@ -1,10 +1,10 @@
-FROM python:3.10
+# Uses a much smaller base image
+FROM python:3.10-slim
 
 WORKDIR /app
 
-COPY requirements.txt .
-
-RUN pip install -r requirements.txt
+# Only install Flask to save space (skip mysql-connector if not needed for the demo)
+RUN pip install --no-cache-dir flask
 
 COPY . .
 
